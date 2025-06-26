@@ -99,6 +99,7 @@ func main() {
 	conf := config.Get()
 
 	http.HandleFunc("/v1/issue/{id}/{type}/{typevalue}/{fields}", func(w http.ResponseWriter, r *http.Request) {
+		slog.Debug("Received request", "id", r.PathValue("id"), "type", r.PathValue("type"), "typevalue", r.PathValue("typevalue"), "fields", r.PathValue("fields"))
 		fields, err := GetIssue(conf, r.PathValue("id"), r.PathValue("fields"))
 		if err != nil {
 			slog.Error("Error getting issue", "error", err.Error())
@@ -108,8 +109,7 @@ func main() {
 		}
 
 		switch r.PathValue("type") {
-		case "inward":
-		case "outward":
+		case "inward", "outward":
 			linked := GetRelatedIssues(fields, r.PathValue("type"), r.PathValue("typevalue"))
 			if linked == nil {
 				slog.Error("No related issues found")
