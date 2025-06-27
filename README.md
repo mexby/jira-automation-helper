@@ -1,5 +1,8 @@
 # Jira Automation Helper
-Since Jira is unable to update fields in ADF format with Automations, this can be used as an alternative.
+Since Jira is unable to update fields in ADF format with Automations, this can be used as an alternative.  
+
+### Attention
+This is a quick'n'dirty solution and should not be run without securing your stuff.  
 
 ### Config File
 ```yml

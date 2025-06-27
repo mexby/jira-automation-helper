@@ -5,9 +5,7 @@ import (
 )
 
 type Configuration struct {
-	JiraAPIKey  string `yaml:"JiraAPIKey"`
-	JiraEmail   string `yaml:"JiraEmail"`
-	JiraBaseURL string `yaml:"JiraBaseURL"`
+	APIKey string `yaml:"APIKey"`
 }
 
 func configFiles() []string {
