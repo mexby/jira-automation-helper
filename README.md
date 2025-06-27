@@ -6,18 +6,23 @@ This is a quick'n'dirty solution and should not be run without securing your stu
 
 ### Config File
 ```yml
-JiraAPIKey: "your-secret-api-key"
-JiraEmail: "your-email@domain.com"
-JiraBaseURL: "https://your-company.atlassian.net"
+APIKey: "your-secret-api-key"
 ```
 
-Then call the service via `/v1/issue/{id}/{type}/{typevalue}/{fields}`.
+Then call the service via POST at `/v1/issue/` with the following payload.
 
 ### Examples
-> /v1/issue/JIRA-123/outward/implements/description,customfield_12345  
 
- This updates the fields Description and customfield_12345 of all linked issues of type "implements" of issue JIRA-123
+Authorization header must match the value in your config file
 
- > /v1/issue/JIRA-123/inward/is implemented by/description,customfield_12345  
-
- This updates the fields Description and customfield_12345 of all linked issues of type "is implemented by" of issue JIRA-123
+```json
+{
+    "id": "JIRA-200",
+    "type": "outward",
+    "typevalue": "implements",
+    "fields": ["description", "customfield_1", "customfield_2", "customfield_3", "customfield_4", "customfield_5", "customfield_6"],
+    "api_key": "YOUR_JIRA_API_KEY",
+    "email": "YOUR_JIRA_EMAIL",
+    "base_url": "https://YOUR-COMPANY.atlassian.net"
+}
+```
